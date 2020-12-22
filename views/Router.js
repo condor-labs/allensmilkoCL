@@ -1,28 +1,31 @@
-"use strict";
-const express = require("express");
-const path = require('path');
-const nunjucks = require('nunjucks');
-const app = express();
+import express from 'express';
+import path from 'path';
+import nunjucks from 'nunjucks';
+
+const moduleURL = new URL(import.meta.url);
+
+const __dirname = path.dirname(moduleURL.pathname);
+
+const ViewsRouter = express();
 
 // SETTING VEW ENGINE AND STATIC FOLDERS
-const pages = path.join(__dirname, '/pages');
-const layouts = path.join(__dirname, '/layouts');
+const pages = path.join(__dirname, 'pages');
+const layouts = path.join(__dirname, 'layouts');
     
-console.log(pages, layouts)
 nunjucks.configure([pages, layouts], {
       autoescape: true, 
-      express: app,
+      express: ViewsRouter,
       watch: true
 });
 
+ViewsRouter.set('view engine', 'html');
+ViewsRouter.set('views', [pages, layouts]);
+ViewsRouter.engine('html', nunjucks.render);
+ViewsRouter.use(express.static('public'));
 
-app.set('view engine', 'html');
-app.set('views', [pages, layouts]);
-app.engine('html', nunjucks.render);
-app.use(express.static('public'));
-
-app.get("/", (req, res, next) => {
+ViewsRouter.get("/", (req, res, next) => {
+    console.log(' views ')
     res.render(`home.html`, {title: 'Trainning Condor labs.io'});
 });
 
-module.exports = app;
+export default ViewsRouter;

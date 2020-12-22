@@ -1,15 +1,16 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from "body-parser";
+
 const app = express();
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // VIEWS ROUTER
-const viewsRouter = require('./views/Router');
+import ViewsRouter from './views/Router.js';
 
 // API ROUTERS
-const apiSchedules = require('./api/schedules/Main');
+import QuotesRouter from './api/quotes/Main.js';
 
 
 //CORS ORIGIN MIDELWARE
@@ -21,7 +22,7 @@ app.use((req,res,next)=>{
 	next();
 });
 
-app.use('/', viewsRouter);
-app.use('/api/v1', apiSchedules);
+app.use('/', ViewsRouter);
+app.use('/api/v1', QuotesRouter);
 
-module.exports = app;
+export default app;

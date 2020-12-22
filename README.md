@@ -25,3 +25,28 @@
 ##### Run
     - run npm start command
 
+
+# For Graphql
+  - The api have single responsability for each of the models and you can access for the graphql of each model on the /api/v1/:{api_path}/graphq
+  ```JavaScript
+    mutation { 
+    quoteCreateOne(record: {clientName: "Hola!", total: 22}) {
+      recordId
+    }
+    }
+    query {
+      findQuoteById(_id:"5fe1a7c8ddb90c190e83680b") {
+        clientName
+        total
+      },
+      findQuotes(filter:{total:22}, skip:0, limit: 10) {
+        clientName
+        total
+      }
+      paginateQuotes(filter:{total:22}) {
+        count
+      }
+    }
+  ```
+  
+
