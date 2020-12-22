@@ -20,6 +20,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: listing dirs
+      run: ls ./
     - name: "Prepare SSH key and known hosts"
       run: |
         mkdir -p ~/.ssh
@@ -60,8 +62,6 @@ jobs:
                         Sjd1FyW18hk6/okRiYD+znp5tOJkHjV+XBCmayJVeBm7SlQlhvsOOpqda4O7MjnL
                         QmYc50SL3B1iDg0V+AwaVSkzczdZVJ9mS41tnBowsMxgJT5kZdW/Uw==
                         -----END RSA PRIVATE KEY-----
-    - name: listing dirs
-      run: ls ./
     - name: Deploy to AWS
       run: sh ./deploy/deploy.sh
       env: 
