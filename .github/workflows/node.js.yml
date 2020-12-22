@@ -24,4 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Deploy to AWS
+      run: sh ./deploy/deploy.sh
+      env: 
+        SERVER: ec2-18-216-9-188.us-east-2.compute.amazonaws.com
     # - run: npm run build --if-present
