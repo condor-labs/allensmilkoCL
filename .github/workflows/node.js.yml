@@ -25,7 +25,7 @@ jobs:
     - name: "Prepare SSH key and known hosts"
       run: |
         mkdir -p ~/.ssh
-        cat ./prueba.pem  > ~/.ssh/id_rsa
+        cat ./pruebas.pem  > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         ssh-keyscan git.eu.s5y.io >> ~/.ssh/known_hosts
