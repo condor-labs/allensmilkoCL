@@ -4,7 +4,7 @@
 rm -rf /home/ubuntu/allensmilkoCL/
 
 # clone the repo again
-git clone --branch dev git@github.com:condor-labs/allensmilkoCL.git
+git clone git@github.com:condor-labs/allensmilkoCL.git
 
 pm2 kill
 
@@ -14,9 +14,6 @@ cd /home/ubuntu/allensmilkoCL
 #install npm packages
 echo "Running npm install"
 npm install
-
-#Compiling packages
-npm run build
 
 #Restart the node server
 npm run start:deploy
