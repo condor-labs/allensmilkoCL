@@ -7,6 +7,7 @@ const { Schema, Model } = mongoose;
 
 const QuoteSchema = new Schema({
     clientName: String,
+    email: String,
     total: Number
 });
   

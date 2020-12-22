@@ -13,4 +13,14 @@ QuoteService.createQuote = async(payload) => {
     }
 }
 
+QuoteService.getQuotes = async(query) => {
+    try {
+        const offset = query.offset? parseInt(query.offset): 0;
+        const limit = query.limit? parseInt(query.limit): 10;
+        return await Quote.paginate({}, { offset, limit });
+    } catch (error) {
+        throw new Error(error);
+    }
+}
+
 export default QuoteService;

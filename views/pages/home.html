@@ -2,6 +2,99 @@
 
 {# This is comment #}
 {% block content %}
-<h1>Hola Mundo!</h1>
+<div class="container">
+    <div class="row">
+        <div class="card col-md-12">
+            <div class="card-header">
+              Autor: Jeison Castañeda 
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Bienvenido condoriano!</h5>
+              <p class="card-text">En este modulo podras gestionar las cotizaciones de tus futuros proyectos</p>
+            </div>
+          </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 dropdown-divider"></div>
+        <div class="col-md-12">
+            <h3>
+                Cotizaciones:
+            </h3>
+        </div>
+        <div class="col-md-12 dropdown-divider"></div>
+        <div class="col-md-12 docs-container">
+            <div class="row">
+                <ul class="list-group list-group-flush">
+                    {% for quote in docs %}
+                        <li class="list-group-item" id="{{quote._id}}" >{{quote.clientName}} | {{quote._id}} | <span class="badge bg-primary">Valor: $ {{quote.total}}</span></li>
+                    {% endfor %}
+                  </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if hasPrevPage %}
+            <li class="page-item">
+                <a class="page-link" href="?offset={{offset - 1}}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="?offset={{offset - 1}}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+        {% endif %}
+      
+        {% for i in range(0, totalPages) -%}
+            {% if i == offset %}
+             <li class="page-item active" aria-current="page"><a class="page-link" href="?offset={{i}}">{{i}}</a></li>
+            {% else %}
+             <li class="page-item"><a class="page-link" href="?offset={{i}}">{{i}}</a></li>
+            {% endif %}
+        {%- endfor %}
+
+        {% if hasNextPage === true and offset + 1 < totalPages %}
+            <li class="page-item">
+                <a class="page-link" href="?offset={{offset + 1}}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="?offset={{offset + 1}}" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+        {% endif %}
+    </ul>
+  </nav>
+  <div class="container">
+    <form class="row" method="POST" id="createForm">
+        <div class="col-md-12">
+            <h4>
+                Nueva cotizacion
+            </h4>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail del cliente</label>
+          <input type="text" class="form-control" id="email" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="clientName" class="form-label">Nombre del cliente</label>
+            <input type="name" class="form-control" id="clientName" name="clientName">
+        </div>
+        <div class="mb-3">
+            <label for="total" class="form-label">Valor de la cotizacion</label>
+            <input type="number" class="form-control" id="total" name="total">
+        </div>
+        <button type="submit" class="btn btn-primary">Crear</button>
+      </form>
+  </div>
+
+
+  <div class="toast" id="alerts-toast-creation" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <strong class="me-auto">Aviso</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body" id="toast-alerts">
+    </div>
+  </div>
 
 {% endblock %}
