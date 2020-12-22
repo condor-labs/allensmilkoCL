@@ -1,5 +1,5 @@
 #!/bin/bash
 
-./deploy/disableHostKeyChecking.sh
+# ./deploy/disableHostKeyChecking.sh
 
 ssh ubuntu@${SERVER} 'bash -s' < ./deploy/updateAndRestart.sh
