@@ -28,6 +28,7 @@
 
 # For Graphql
   - The api have single responsability for each of the models and you can access for the graphql of each model on the /api/v1/:{api_path}/graphq
+  - Here is a graphql example for 'Quotes' model 
   ```JavaScript
     mutation { 
     quoteCreateOne(record: {clientName: "Hola!", total: 22}) {
