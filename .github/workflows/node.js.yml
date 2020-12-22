@@ -24,6 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: listing dirs
+      run: ls ./
     - name: Deploy to AWS
       run: sh ./deploy/deploy.sh
       env: 
