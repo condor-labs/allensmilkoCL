@@ -23,33 +23,7 @@ jobs:
     - name: "Prepare SSH key and known hosts"
       run: |
         mkdir -p ~/.ssh
-        echo "-----BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEAjMsEeYBT3iYHalFP2UHSrVO9vCgM5tTjrXeYVBMESAIQNk/a
-FOa6RX1Hr5G9P0DT281JUdQYhyvTr6u6twugrg1lBnYKF3QQv7VQ6ODLlK7InAzI
-OeJTivU9McsURPADnHBC4Kqd1JUE25/cKlpMHCcZbNsQUIC6b2nd0vB2IeOIHPAs
-W3TQvg+cIMyKFt6soyUd0SdNEfSTxgl2Dmzg3/As2cNXsXRfRUYdZTzoT5WqnAYD
-a/eKLVK0DWZA57ewIiR/F+IYXA/PJyjqa7Gnzx2a85AAFcc6TREKQANZi5HsmonB
-C1sKKwr+ql8Y8pcmdIFiIWRGCxp2y9vF5WF1XQIDAQABAoIBAHaO4sa5xGX2Ghpy
-PE4TuqfQM57FDxA2Rz8kzXZGyT0l16cUmO0u2b54X6w9imJAYebeuJYah0kUI97z
-Oni3ZugKSX8mWRsk1pHIykhAO86JXE7kCJuNtZH3Lz/F5dyjTDco5Xgw1FVV41Ba
-DljvztWKK0PaOKPBsrztJilh6ehgWEDoqMonRYKxsYFNoYK/aW19mcuYUF4cmv87
-HoJ7c/xLp1jQcry69Rmns4qaLlgQ8fhljDwCTyWweMpcXvuelADeu7vNF0XolnbW
-8ylwQ8pwtIVuaa41RfP9wfwB3pz5c4mM6yAjH/LYTr/RcPS/zQ0onab4fRmHFDe4
-jHcwv/UCgYEA+yRj19orJyhLzYVEzmAsmOPwvXb+mraRdU5Wal4/yhLPkgC6Pswp
-gqzTAEAUlmJ+/COq4dBTKO+zSqko+M2tqYPRO3MAmk7CYQ8W39LZjzKMRLwJurgN
-Q8cc3oytmhW7vOZ3pqwUcoFJ5ZzWewp6XZt74kKvWlpS8TR5YwJk8iMCgYEAj4Qy
-57xmO/UAqYZzdBIX/qxjvKdR4BHzbRYVzAz6x4abEyXHxX+8t2+jfs74amiOuAnQ
-9TUrSLAMka9KEuPwbkwwDZrBVNiCXILW1jNGtOXbqM4TgdbEIpOTFy8vreJ8WEdb
-44vW258L+8SISwxLxrkut0NyQauOJ8JYV6vbsn8CgYEApQQ2LoCF1kbd9/7XRRtg
-cl1js7padOH9Fa0Rjva6x1Yw2Whs+BJCPEC+q+1vGZlCgv4UrCesXLuTfT1FVKYg
-s7+PXZalEL8rbYbyqsLqfPLjw84iPnPtE1njmD+rWhFpuCde+z8aeFqHab3yGAq8
-eIFPl03l1mJ/GUo3cF0EYy0CgYA4q9RKK9wW+vVK+/ulLuvotfwgZ9Xt7Ei6n8j1
-rX5twZqE4htTwtArg1sFXQc9RZJt2/p2iYtRBavA734JnZa4hz9GcAC9100K6OOa
-696U2lt1+gI7+Cm1GZ8wvYJPYKsHVQ5U+Uhbqx9ZSM8lC3L0wvVOisSYZ/0XeCfY
-XtW/UwKBgQCpQnxrD9TQVOJclrlv4rDoQtSqCFevXd1iyIHyIrW33FDVVwpzJs63
-Sjd1FyW18hk6/okRiYD+znp5tOJkHjV+XBCmayJVeBm7SlQlhvsOOpqda4O7MjnL
-QmYc50SL3B1iDg0V+AwaVSkzczdZVJ9mS41tnBowsMxgJT5kZdW/Uw==
------END RSA PRIVATE KEY-----" > ~/.ssh/id_rsa
+        cat ./prueba.pem  > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
         ssh-keyscan github.com >> ~/.ssh/known_hosts
         ssh-keyscan git.eu.s5y.io >> ~/.ssh/known_hosts
@@ -60,32 +34,32 @@ QmYc50SL3B1iDg0V+AwaVSkzczdZVJ9mS41tnBowsMxgJT5kZdW/Uw==
         ssh-host: ec2-18-216-9-188.us-east-2.compute.amazonaws.com
         ssh-private-key: | 
                         -----BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEAjMsEeYBT3iYHalFP2UHSrVO9vCgM5tTjrXeYVBMESAIQNk/a
-FOa6RX1Hr5G9P0DT281JUdQYhyvTr6u6twugrg1lBnYKF3QQv7VQ6ODLlK7InAzI
-OeJTivU9McsURPADnHBC4Kqd1JUE25/cKlpMHCcZbNsQUIC6b2nd0vB2IeOIHPAs
-W3TQvg+cIMyKFt6soyUd0SdNEfSTxgl2Dmzg3/As2cNXsXRfRUYdZTzoT5WqnAYD
-a/eKLVK0DWZA57ewIiR/F+IYXA/PJyjqa7Gnzx2a85AAFcc6TREKQANZi5HsmonB
-C1sKKwr+ql8Y8pcmdIFiIWRGCxp2y9vF5WF1XQIDAQABAoIBAHaO4sa5xGX2Ghpy
-PE4TuqfQM57FDxA2Rz8kzXZGyT0l16cUmO0u2b54X6w9imJAYebeuJYah0kUI97z
-Oni3ZugKSX8mWRsk1pHIykhAO86JXE7kCJuNtZH3Lz/F5dyjTDco5Xgw1FVV41Ba
-DljvztWKK0PaOKPBsrztJilh6ehgWEDoqMonRYKxsYFNoYK/aW19mcuYUF4cmv87
-HoJ7c/xLp1jQcry69Rmns4qaLlgQ8fhljDwCTyWweMpcXvuelADeu7vNF0XolnbW
-8ylwQ8pwtIVuaa41RfP9wfwB3pz5c4mM6yAjH/LYTr/RcPS/zQ0onab4fRmHFDe4
-jHcwv/UCgYEA+yRj19orJyhLzYVEzmAsmOPwvXb+mraRdU5Wal4/yhLPkgC6Pswp
-gqzTAEAUlmJ+/COq4dBTKO+zSqko+M2tqYPRO3MAmk7CYQ8W39LZjzKMRLwJurgN
-Q8cc3oytmhW7vOZ3pqwUcoFJ5ZzWewp6XZt74kKvWlpS8TR5YwJk8iMCgYEAj4Qy
-57xmO/UAqYZzdBIX/qxjvKdR4BHzbRYVzAz6x4abEyXHxX+8t2+jfs74amiOuAnQ
-9TUrSLAMka9KEuPwbkwwDZrBVNiCXILW1jNGtOXbqM4TgdbEIpOTFy8vreJ8WEdb
-44vW258L+8SISwxLxrkut0NyQauOJ8JYV6vbsn8CgYEApQQ2LoCF1kbd9/7XRRtg
-cl1js7padOH9Fa0Rjva6x1Yw2Whs+BJCPEC+q+1vGZlCgv4UrCesXLuTfT1FVKYg
-s7+PXZalEL8rbYbyqsLqfPLjw84iPnPtE1njmD+rWhFpuCde+z8aeFqHab3yGAq8
-eIFPl03l1mJ/GUo3cF0EYy0CgYA4q9RKK9wW+vVK+/ulLuvotfwgZ9Xt7Ei6n8j1
-rX5twZqE4htTwtArg1sFXQc9RZJt2/p2iYtRBavA734JnZa4hz9GcAC9100K6OOa
-696U2lt1+gI7+Cm1GZ8wvYJPYKsHVQ5U+Uhbqx9ZSM8lC3L0wvVOisSYZ/0XeCfY
-XtW/UwKBgQCpQnxrD9TQVOJclrlv4rDoQtSqCFevXd1iyIHyIrW33FDVVwpzJs63
-Sjd1FyW18hk6/okRiYD+znp5tOJkHjV+XBCmayJVeBm7SlQlhvsOOpqda4O7MjnL
-QmYc50SL3B1iDg0V+AwaVSkzczdZVJ9mS41tnBowsMxgJT5kZdW/Uw==
------END RSA PRIVATE KEY-----
+                MIIEpAIBAAKCAQEAjMsEeYBT3iYHalFP2UHSrVO9vCgM5tTjrXeYVBMESAIQNk/a
+                FOa6RX1Hr5G9P0DT281JUdQYhyvTr6u6twugrg1lBnYKF3QQv7VQ6ODLlK7InAzI
+                OeJTivU9McsURPADnHBC4Kqd1JUE25/cKlpMHCcZbNsQUIC6b2nd0vB2IeOIHPAs
+                W3TQvg+cIMyKFt6soyUd0SdNEfSTxgl2Dmzg3/As2cNXsXRfRUYdZTzoT5WqnAYD
+                a/eKLVK0DWZA57ewIiR/F+IYXA/PJyjqa7Gnzx2a85AAFcc6TREKQANZi5HsmonB
+                C1sKKwr+ql8Y8pcmdIFiIWRGCxp2y9vF5WF1XQIDAQABAoIBAHaO4sa5xGX2Ghpy
+                PE4TuqfQM57FDxA2Rz8kzXZGyT0l16cUmO0u2b54X6w9imJAYebeuJYah0kUI97z
+                Oni3ZugKSX8mWRsk1pHIykhAO86JXE7kCJuNtZH3Lz/F5dyjTDco5Xgw1FVV41Ba
+                DljvztWKK0PaOKPBsrztJilh6ehgWEDoqMonRYKxsYFNoYK/aW19mcuYUF4cmv87
+                HoJ7c/xLp1jQcry69Rmns4qaLlgQ8fhljDwCTyWweMpcXvuelADeu7vNF0XolnbW
+                8ylwQ8pwtIVuaa41RfP9wfwB3pz5c4mM6yAjH/LYTr/RcPS/zQ0onab4fRmHFDe4
+                jHcwv/UCgYEA+yRj19orJyhLzYVEzmAsmOPwvXb+mraRdU5Wal4/yhLPkgC6Pswp
+                gqzTAEAUlmJ+/COq4dBTKO+zSqko+M2tqYPRO3MAmk7CYQ8W39LZjzKMRLwJurgN
+                Q8cc3oytmhW7vOZ3pqwUcoFJ5ZzWewp6XZt74kKvWlpS8TR5YwJk8iMCgYEAj4Qy
+                57xmO/UAqYZzdBIX/qxjvKdR4BHzbRYVzAz6x4abEyXHxX+8t2+jfs74amiOuAnQ
+                9TUrSLAMka9KEuPwbkwwDZrBVNiCXILW1jNGtOXbqM4TgdbEIpOTFy8vreJ8WEdb
+                44vW258L+8SISwxLxrkut0NyQauOJ8JYV6vbsn8CgYEApQQ2LoCF1kbd9/7XRRtg
+                cl1js7padOH9Fa0Rjva6x1Yw2Whs+BJCPEC+q+1vGZlCgv4UrCesXLuTfT1FVKYg
+                s7+PXZalEL8rbYbyqsLqfPLjw84iPnPtE1njmD+rWhFpuCde+z8aeFqHab3yGAq8
+                eIFPl03l1mJ/GUo3cF0EYy0CgYA4q9RKK9wW+vVK+/ulLuvotfwgZ9Xt7Ei6n8j1
+                rX5twZqE4htTwtArg1sFXQc9RZJt2/p2iYtRBavA734JnZa4hz9GcAC9100K6OOa
+                696U2lt1+gI7+Cm1GZ8wvYJPYKsHVQ5U+Uhbqx9ZSM8lC3L0wvVOisSYZ/0XeCfY
+                XtW/UwKBgQCpQnxrD9TQVOJclrlv4rDoQtSqCFevXd1iyIHyIrW33FDVVwpzJs63
+                Sjd1FyW18hk6/okRiYD+znp5tOJkHjV+XBCmayJVeBm7SlQlhvsOOpqda4O7MjnL
+                QmYc50SL3B1iDg0V+AwaVSkzczdZVJ9mS41tnBowsMxgJT5kZdW/Uw==
+                -----END RSA PRIVATE KEY-----
     - name: listing dirs
       run: ls ./
     - name: Deploy to AWS
