@@ -2,6 +2,10 @@ var form = document.getElementById('createForm');
 
 form.addEventListener('submit', function(event) {
   event.preventDefault();
+  var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+  var toastList = toastElList.map(function (toastEl) {
+    return new bootstrap.Toast(toastEl)
+  })
   var toast = $('#alerts-toast-creation');
   var toastAlert = $("#toast-alerts")
   toastAlert.empty();
@@ -36,8 +40,11 @@ form.addEventListener('submit', function(event) {
   
   responsePromise
     .then(function(response) {
+      
         toastAlert.append('<p>Cotizacion creada con exito!</p>');
         toast.show();
+        
+        setTimeout(function(){ location.reload(); }, 3000);
       return response.json();
     })
     

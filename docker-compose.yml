@@ -1,0 +1,66 @@
+version: '2.2'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    container_name: es01
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01
+      - cluster.initial_master_nodes=es01
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.monitoring.collection.enabled=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - data01:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+      - 9300:9300
+    networks:
+      - elastic
+
+  kib01:
+    image: docker.elastic.co/kibana/kibana:7.10.1
+    container_name: kib01
+    ports:
+      - 5601:5601
+    environment:
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: DkIedPPSCb
+      ELASTICSEARCH_URL: http://es01:9200
+      ELASTICSEARCH_HOSTS: http://es01:9200
+    depends_on: 
+      - es01
+    networks:
+      - elastic
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:6.4.0
+    ports:
+      - 9600:9600
+    command: logstash -f /usr/share/logstash/pipeline/logstash.conf
+    volumes:
+      - ./logstash/config/logstash.conf:/usr/share/logstash/pipeline/logstash.conf
+    environment:
+      ELASTIC_USERNAME: elastic
+      ELASTIC_PASSWORD: changeme
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+      ELASTIC_HOST: localhost:9200
+      xpack.monitoring.elasticsearch.url: "http://localhost:9200"
+      MONITORING_ENABLED: 'false'
+    depends_on: 
+      - es01
+    networks:
+      - elastic
+
+volumes:
+  data01:
+    driver: local
+
+networks:
+  elastic:
+    driver: bridge
