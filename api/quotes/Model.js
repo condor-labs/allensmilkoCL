@@ -28,6 +28,7 @@ schemaComposer.Query.addFields({
 
 schemaComposer.Mutation.addFields({
   quoteCreateOne: QuoteTC.mongooseResolvers.createOne(),
+  createMany: QuoteTC.mongooseResolvers.createMany(),
 });
 
 export const graphqlSchema = schemaComposer.buildSchema();
