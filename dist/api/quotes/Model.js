@@ -69,7 +69,8 @@ _graphqlCompose.schemaComposer.Query.addFields({
 });
 
 _graphqlCompose.schemaComposer.Mutation.addFields({
-  quoteCreateOne: QuoteTC.mongooseResolvers.createOne()
+  quoteCreateOne: QuoteTC.mongooseResolvers.createOne(),
+  createMany: QuoteTC.mongooseResolvers.createMany()
 });
 
 var graphqlSchema = _graphqlCompose.schemaComposer.buildSchema();

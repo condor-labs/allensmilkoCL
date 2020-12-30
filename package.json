@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon index.js --exec babel-node",
     "start:deploy": "pm2 start pm2.config.js",
-    "test": "./node_modules/.bin/mocha --compilers js:@babel/register",
+    "test": "./node_modules/.bin/mocha",
     "build": "babel ./ -d dist --source-maps",
     "clean": "rimraf dist"
   },

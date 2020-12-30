@@ -27,8 +27,7 @@ export const CreateManyQuotes = async (req, res, next) => {
     try {
         const lengthMap = faker.random.number(100);
         const body = [];
-        for (let index = 0; index < 1; index++) {
-            body.push({ "index" : { "_index" : "quotes", "_type": "_doc",} })
+        for (let index = 0; index < lengthMap; index++) {
             body.push ({
                 clientName: faker.name.firstName(),
                 total: faker.commerce.price(),
@@ -37,7 +36,7 @@ export const CreateManyQuotes = async (req, res, next) => {
         }
         
         console.log(body)
-        const quoteCreated = await QuoteService.ingestManyQuotes(body);
+        const quoteCreated = await QuoteService.createManyQuotes(body);
         res.status(200).send(quoteCreated);
     } catch (error) {
         console.log(error)

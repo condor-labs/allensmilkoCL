@@ -13,7 +13,11 @@ var _Controller = require("./Controller.js");
 
 var _Model = require("./Model.js");
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    "default": obj
+  };
+}
 
 var QuotesRouter = (0, _express["default"])();
 QuotesRouter.get("/quotes", _Controller.GetQuotes);
